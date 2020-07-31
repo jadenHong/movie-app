@@ -1,8 +1,12 @@
 import React from 'react';
 
-const Movie = () => {
+//poster={poster} title={title} year={year} rating={rating}
+
+
+const Movie = ({ movieInfo }) => {
+    console.log(movieInfo);
     return (
-        <div></div>
+        <div>{movieInfo}</div>
     )
 }
 
