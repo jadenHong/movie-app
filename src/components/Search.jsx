@@ -1,11 +1,15 @@
 import React from 'react';
 
-const Search = ({ onChange, onClick, value }) => {
+const Search = ({ searchTitle, searchYear, searchRating }) => {
     return (
-        <div className="search-bar">
-            <input type="text" />
-            <button type="submit" onClick={onClick} onChange={onChange} value={value}>Search</button>
-        </div>
+        <form className="search-bar">
+            <label>Title: </label>
+            <input type="text" className="input-title" onChange={searchTitle} />
+            <label>Year: </label>
+            <input type="text" className="input-year" onChange={searchYear} />
+            <label>Rating: </label>
+            <input type="text" className="input-genre" onChange={searchRating} />
+        </form>
     )
 }
 
