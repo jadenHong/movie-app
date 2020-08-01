@@ -4,14 +4,7 @@ import React from 'react';
 
 const Movie = ({ movieInfo, filter }) => {
     const { title, year, rate, genre } = filter;
-    console.log(movieInfo);
-    let genreArray = [];
-    for (let i = 0; i < movieInfo.length; i++) {
-        console.log(movieInfo[i].genres);
-        genreArray.push(movieInfo[i].genres);
-    }
 
-    console.log(genreArray);
 
     // filtering logic separated
     const shouldDisplayAll = title.length === 0 && Number(year) === 0 && Number(rate) === 0 && genre.length === 0; // special filter to decide whether to show all (only when page is rendered initially)
@@ -24,9 +17,8 @@ const Movie = ({ movieInfo, filter }) => {
     const yearFilter = (movie) => Number(year) > 0 && movie.year === Number(year);
     const rateFilter = (movie) => Number(rate) > 0 && movie.rating >= Number(rate);
 
-    console.log(genre.length);
 
-
+    // movie.genres is an array. so mapping this array then find arguments genre using inner function called includes().
     const genreFilter = (movie) => genre.length > 0 && movie.genres.map(a => a).includes(genre);
 
     // get filtered movie list
@@ -34,7 +26,6 @@ const Movie = ({ movieInfo, filter }) => {
 
     // if no filter is provided return the original array otherwise get filtered movies
     const data = shouldDisplayAll ? movieInfo : getFilteredMovies();
-    console.log(data);
     return (
         <div>
             {data.map((item, index) => (

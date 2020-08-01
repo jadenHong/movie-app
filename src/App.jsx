@@ -20,19 +20,19 @@ const App = () => {
   }, [])
 
   const getData = () => {
-    // setIsLoading(true);
-    // setTimeout(() => {
-    //   console.log(data);
-    //   setMoive(data.data.movies);
-    //   setIsLoading(false);
-    // }, 1000);
-    fetch(URL)
-      .then((response) =>
-        response.json()
-      )
-      .then((data) => {
-        setMoive(data.data.movies);
-      });
+    setIsLoading(true);
+    setTimeout(() => {
+
+      fetch(URL)
+        .then((response) =>
+          response.json()
+        )
+        .then((data) => {
+          setMoive(data.data.movies);
+        });
+      setIsLoading(false);
+    }, 1000);
+
   };
 
   const titleHandle = (e) => {
@@ -43,7 +43,6 @@ const App = () => {
   const yearHandle = (e) => {
     const newInputYear = e.target.value;
     setInputYear(newInputYear);
-    console.log(inputYear)
 
   }
 
