@@ -3,10 +3,18 @@ import React from 'react';
 //poster={poster} title={title} year={year} rating={rating}
 
 const Movie = ({ movieInfo, filter }) => {
-    const { title, year, rate } = filter;
+    const { title, year, rate, genre } = filter;
+    console.log(movieInfo);
+    let genreArray = [];
+    for (let i = 0; i < movieInfo.length; i++) {
+        console.log(movieInfo[i].genres);
+        genreArray.push(movieInfo[i].genres);
+    }
+
+    console.log(genreArray);
 
     // filtering logic separated
-    const shouldDisplayAll = title.length === 0 && Number(year) === 0 && Number(rate) === 0; // special filter to decide whether to show all (only when page is rendered initially)
+    const shouldDisplayAll = title.length === 0 && Number(year) === 0 && Number(rate) === 0 && genre.length === 0; // special filter to decide whether to show all (only when page is rendered initially)
 
     // apply filters only when filter values are provided otherwise default to false
     // e.g.) title = 'Doctor' would end up like so: (true || false || false -> true) hence this one gets picked
@@ -16,12 +24,17 @@ const Movie = ({ movieInfo, filter }) => {
     const yearFilter = (movie) => Number(year) > 0 && movie.year === Number(year);
     const rateFilter = (movie) => Number(rate) > 0 && movie.rating >= Number(rate);
 
+    console.log(genre.length);
+
+
+    const genreFilter = (movie) => genre.length > 0 && movie.genres.map(a => a).includes(genre);
+
     // get filtered movie list
-    const getFilteredMovies = () => movieInfo.filter((movie) => titleFilter(movie) || yearFilter(movie) || rateFilter(movie))
+    const getFilteredMovies = () => movieInfo.filter((movie) => titleFilter(movie) || yearFilter(movie) || rateFilter(movie) || genreFilter(movie))
 
     // if no filter is provided return the original array otherwise get filtered movies
     const data = shouldDisplayAll ? movieInfo : getFilteredMovies();
-
+    console.log(data);
     return (
         <div>
             {data.map((item, index) => (
@@ -32,7 +45,8 @@ const Movie = ({ movieInfo, filter }) => {
                         }
                         alt="movie-poster"
                     />
-                    <h2>{item.title}</h2>
+                    <h2>{item.title} ( {item.genres.map(a => a + ", ")} )</h2>
+
                     <h3>{item.year}</h3>
                     <h4>{item.rating}</h4>
                     <h4>{item.summary}</h4>
