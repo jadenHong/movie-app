@@ -13,7 +13,7 @@ const App = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   // const URL = "./data/movie.json";
-  const URL = "https://yts.mx/api/v2/list_movies.json?sort_by=rating";
+  const URL = "http://localhost:5050/movie/findMovie";
   // console.log(moviesArray);
   useEffect(() => {
     getData();
@@ -28,7 +28,7 @@ const App = () => {
           response.json()
         )
         .then((data) => {
-          setMoive(data.data.movies);
+          setMoive(data.movies);
         });
       setIsLoading(false);
     }, 1000);
