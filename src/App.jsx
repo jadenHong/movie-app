@@ -70,7 +70,7 @@ const App = () => {
 
     <div className="container" >
       <Menu />
-      <Search value={inputTitle} searchTitle={titleHandle} searchYear={yearHandle} searchRating={rateHandle} searchGenre={genreHandle} />
+      <Search searchTitle={titleHandle} searchYear={yearHandle} searchRating={rateHandle} searchGenre={genreHandle} />
       {renderMovieContent()}
     </div >
   );
