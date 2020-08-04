@@ -11,13 +11,13 @@ const App = () => {
   const [inputGenre, setInputGenre] = useState('');
   const [movie, setMoive] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-
   // const URL = "./data/movie.json";
   const URL = "http://localhost:5050/movie/findMovie";
   // console.log(moviesArray);
   useEffect(() => {
     getData();
-  }, [])
+  }, []);
+
 
   const getData = () => {
     setIsLoading(true);
@@ -65,6 +65,8 @@ const App = () => {
           filter={{ title: inputTitle, year: inputYear, rate: inputRate, genre: inputGenre }}
         />
       );
+
+
 
   return (
 
